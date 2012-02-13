@@ -140,7 +140,7 @@ class wp_keywordmonitor_de {
     public static function add_sidebar_menu() {
         /* menu cfg */
         $page = add_options_page(
-                'KeywordMonitor.de', '<img src="' . plugins_url('keywordmonitor/img/icon.png') . '" id="ab_icon" alt="KeywordMonitor.de" />KeywordMonitor.de', 'manage_options', self::$short, array('wp_keywordmonitor_de_GUI', 'load_page')
+                'KeywordMonitor.de', '<img src="' . plugins_url('img/icon.png', __FILE__) . '" id="ab_icon" alt="KeywordMonitor.de" />KeywordMonitor.de', 'manage_options', self::$short, array('wp_keywordmonitor_de_GUI', 'load_page')
         );
 
         /* load php */
@@ -192,7 +192,7 @@ class wp_keywordmonitor_de {
     public static function dashboard_show_rankings() {
         $id = (int) self::get_option('project_active_id');
         $rankings = (array) self::get_option('project_active_rankings');
-        $updated = (array) self::get_option('project_active_rankings_updated');
+        $updated = (int) self::get_option('project_active_rankings_updated');
 
         if (
                 empty($rankings) ||
