@@ -192,7 +192,7 @@ class wp_keywordmonitor_de {
     public static function dashboard_show_rankings() {
         $id = (int) self::get_option('project_active_id');
         $rankings = (array) self::get_option('project_active_rankings');
-        $updated = (array) self::get_option('project_active_rankings_updated');
+        $updated = (int) self::get_option('project_active_rankings_updated');
 
         if (
                 empty($rankings) ||
