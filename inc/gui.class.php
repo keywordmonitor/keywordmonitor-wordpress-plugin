@@ -73,8 +73,6 @@ class wp_keywordmonitor_de_GUI extends wp_keywordmonitor_de {
         ?>
 
         <div class="wrap" id="wp_keywordmonitor_de_main">
-
-
             <div id="icon-edit-pages" class="icon32"><br /></div>
             <h2>KeywordMonitor - Ranking Entwicklung <a href="https://app.keywordmonitor.de" class="add-new-h2">Zum KeywordMonitor Login</a></h2>
 

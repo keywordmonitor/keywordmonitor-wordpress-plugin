@@ -1,12 +1,11 @@
 <?php
-
 /*
   Plugin Name: KeywordMonitor.de WordPress Plugin
-  Description: Ein Wordpress Plugin, welches die aktuelles Rankings eines Projektes im Wordpress Dashboard ausgibt. Basiert auf <a href="http://antispambee.de">Antispam Bee</a> von Sergej Müller. Wurde erweitert von <a href="http://www.keywordmonitor.de">Christian Schmidt</a>
+  Description: Ein Wordpress Plugin, welches die aktuelles Rankings eines Projektes im Wordpress Dashboard ausgibt. Basiert auf <a href="http://antispambee.de">Antispam Bee</a> von Sergej Müller. Wurde erweitert von <a href="http://www.keywordmonitor.de">Christian Schmidt</a>.
   Author: D. Abromeit, Lucido Media GbR
   Author URI: http://lucido-media.de/
   Plugin URI: https://github.com/crilla/KeywordMonitor-Wordpress-Plugin
-  Version: 1.2
+  Version: 1.2.2
 */
 
 
@@ -32,7 +31,7 @@ class wp_keywordmonitor_de {
             return;
         }
 
-// init internal vars //
+		// init internal vars //
         self::$base = plugin_basename(__FILE__);
         self::$short = 'wp_keywordmonitor_de';
         self::$default = array('options' => array(
@@ -49,7 +48,7 @@ class wp_keywordmonitor_de {
             return;
         }
 
-// BEGIN register actions //
+		// BEGIN register actions //
         add_action(
                 'admin_menu', array(__CLASS__, 'add_sidebar_menu')
         );
@@ -69,11 +68,14 @@ class wp_keywordmonitor_de {
                     'admin_post_wp_keywordmonitor_de_save_changes', array('wp_keywordmonitor_de_GUI', 'save_changes')
             );
         }
-// END register actions //
+        
+		// additional credits and option links
+		add_filter('plugin_row_meta', array('wp_keywordmonitor_de', 'register_additional_plugin_links'), 10, 2);
+        
+		// END register actions //
     }
 
-// INSTALL  ////////////////////////////////////////////////////////////////
-
+	// INSTALL  ////////////////////////////////////////////////////////////////
     /**
      * on plugin activation
      */
@@ -85,7 +87,7 @@ class wp_keywordmonitor_de {
      * on plugin deactivation
      */
     public static function deactivate() {
-//void
+		//void
     }
 
     /**
@@ -97,9 +99,8 @@ class wp_keywordmonitor_de {
         delete_option('wp_keywordmonitor_de');
         $wpdb->query("OPTIMIZE TABLE `" . $wpdb->options . "`");
     }
-
-// HELPER //////////////////////////////////////////////////////////////////
-
+	
+	// HELPER //////////////////////////////////////////////////////////////////
     /**
      * check if current admin-page is [page-XY]
      *
@@ -125,8 +126,7 @@ class wp_keywordmonitor_de {
         }
     }
 
-// RESSOURCES  /////////////////////////////////////////////////////////////
-
+	// RESSOURCES  /////////////////////////////////////////////////////////////
     /**
      * register ressources (e.g. css + js)
      */
@@ -170,8 +170,7 @@ class wp_keywordmonitor_de {
         require_once( dirname(__FILE__) . '/inc/gui.class.php' );
     }
 
-// DASHBOARD ///////////////////////////////////////////////////////////////
-
+	// DASHBOARD ///////////////////////////////////////////////////////////////
     /**
      * init dashboard widget
      */
@@ -227,9 +226,10 @@ class wp_keywordmonitor_de {
             array_multisort($tmp_ranking, SORT_ASC, $tmp_keyword, SORT_ASC, $rankings);
             unset($tmp_ranking, $tmp_keyword);
 
-#echo '<p style="text-align:right;">';
-#echo '<a href="https://app.keywordmonitor.de/projects/view_all_keyword_rankings_global/'.$id.'/google_de" target="_blank">Rankings auf KeywordMonitor.de ansehen &raquo;</a><br />';
-#echo '</p>';
+			echo '<p style="text-align:right;">';
+			echo '<a href="https://app.keywordmonitor.de/" target="_blank">Rankings auf KeywordMonitor.de ansehen &raquo;</a><br />';
+			#echo '<a href="https://app.keywordmonitor.de/projects/view_all_keyword_rankings_global/'.$id.'/google_de" target="_blank">Rankings auf KeywordMonitor.de ansehen &raquo;</a><br />';
+			echo '</p>';
 
             echo '<table style="border:0; width:100%;">';
             echo '<thead>';
@@ -260,8 +260,7 @@ class wp_keywordmonitor_de {
         }
     }
 
-// OPTIONS /////////////////////////////////////////////////////////////////
-
+	// OPTIONS /////////////////////////////////////////////////////////////////
     /**
      * Rückgabe der Optionen
      *
@@ -314,8 +313,7 @@ class wp_keywordmonitor_de {
         wp_cache_set(self::$short, $options);
     }
 
-// KEYWORDMONITOR-API CALLS ////////////////////////////////////////////////
-
+	// KEYWORDMONITOR-API CALLS ////////////////////////////////////////////////
     private static function _get_api_url($username, $api_key, $action = '') {
         return 'http://api.keywordmonitor.de/v1'
                 . '?username=' . urlencode($username)
@@ -359,6 +357,14 @@ class wp_keywordmonitor_de {
         return self::_exec_api_call($url, 'ranking');
     }
 
+	// Credits
+	function register_additional_plugin_links($links, $file) {		
+		if ($file == self::$base) {
+			$links[] = '<a href="options-general.php?page='.self::$short.'">Einstellungen</a>';
+			$links[] = '<a href="http://antispambee.de">basiert auf Antispam Bee</a>';
+		}
+		return $links;
+	}
 }
 
 // FINALLY REGISTER OUR HOOKS ////////////////////////////////////////////////
