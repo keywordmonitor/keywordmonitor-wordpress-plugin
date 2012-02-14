@@ -2,7 +2,7 @@
 
 /*
   Plugin Name: KeywordMonitor.de WordPress Plugin
-  Description: Ein Wordpress Plugin, welches die aktuelles Rankings eines Projektes im Wordpress Dashboard ausgibt. Basiert auf der Vorlage von D.Abromeit und wurde erweitert von <a href="http://www.keywordmonitor.de">Christian Schmidt</a>
+  Description: Ein Wordpress Plugin, welches die aktuelles Rankings eines Projektes im Wordpress Dashboard ausgibt. Basiert auf <a href="http://antispambee.de">Antispam Bee</a> von Sergej Müller. Wurde erweitert von <a href="http://www.keywordmonitor.de">Christian Schmidt</a>
   Author: D. Abromeit, Lucido Media GbR
   Author URI: http://lucido-media.de/
   Plugin URI: https://github.com/crilla/KeywordMonitor-Wordpress-Plugin
