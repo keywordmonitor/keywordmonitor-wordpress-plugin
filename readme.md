@@ -14,4 +14,4 @@ Dashboard | Ranking Entwicklung | Einstellungen
 * 1.2.2 Erster Github Commit
 
 ## Contributors
-Christian Schmidt (KeywordMonitor.de), D.Abromeit (lucido-media.de), Sergej Müller (eBiene.de)
+[Christian Schmidt (KeywordMonitor)](https://github.com/crilla), [Daniel Abromeit](https://github.com/Abromeit), [Sergej Müller](https://github.com/sergejmueller)
