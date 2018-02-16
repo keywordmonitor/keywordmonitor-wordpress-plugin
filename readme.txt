@@ -9,7 +9,7 @@ KeywordMonitor.de WordPress Plugin
 
 == Description ==
 
-Ein Wordpress Plugin, welches sich über die KeywordMonitor API die aktuellen Rankings eines Projektes holt und im Dashboard ausgibt.
+Ein WordPress Plugin, welches sich über die KeywordMonitor API die aktuellen Rankings eines Projektes holt und im Dashboard ausgibt.
 
 == Changelog ==
 
